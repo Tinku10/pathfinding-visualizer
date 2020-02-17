@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   #content{
     
     padding: 4px;

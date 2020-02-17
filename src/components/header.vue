@@ -1,12 +1,13 @@
 <template>
-<div id="head">
+<div id="h">
   <div id="header">
     <span id="b"><button>ABOUT</button></span>
     <span><h2 id="heading">PATHFINDING VISUALIZER</h2></span>
     <span id="sel"><slot name="select"></slot></span>
     
   </div>
-    <h4>A visualization tool to find a path from the source to destination, if present</h4>
+  
+  <!-- <h5>A visualization tool to find a path from the source to the destination, if present</h5> -->
 </div>
   
 </template>
@@ -31,7 +32,7 @@ export default {
   /* background-color: rgba(7, 7, 7, 0.863); */
 }
 #b{
-  margin-top: 17px;
+  margin-top: 15px;
   margin-left: 50px;
 }
 button{
@@ -97,12 +98,21 @@ button{
   outline: none;
 }
 #sel{
-  margin-top: 17px;
+  margin-top: 12px;
   margin-right: 10px;
 }
-#head{
+#h{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+h5{
+  font-size: 20px; 
+  align-content: center;
+  font-style: italic;
+  font-weight: lighter;
+  padding: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0px;
 }
 </style>

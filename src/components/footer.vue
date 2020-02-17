@@ -1,5 +1,5 @@
 <template>
-  <div id="content">
+  <div>
     &#60; &#62; with ❤️ by tinku
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style scoped>
-  #content{
+  div{
     
   text-align: center;
   margin-bottom: -20px;

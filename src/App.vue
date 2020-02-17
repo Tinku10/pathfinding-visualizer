@@ -3,7 +3,7 @@
     <head-box>
        <template v-slot:select>
           <select class="select" v-model="algorithm">
-            <option hidden>{{ algorithm }}</option>
+            <option style="color: #4fc08d;" hidden>{{ algorithm }}</option>
             <option>Breadth First Search</option>
             <option>Depth First Search</option>
             <option>Dijkstra's Algorithm</option>
@@ -71,6 +71,7 @@
 
       <!-- </span> -->
     </div>
+    <br>
     <br>
     <foot></foot>
   </div>
@@ -209,13 +210,13 @@ export default {
             //   }
             // }
           }else if(this.algorithm == "Depth First Search"){
-            alert("fds");
+            // alert("fds");
             if(this.i == 0){
               let a = this.$refs.grid.DFS(true);
               this.path = a[0];
               this.visitedDFS = a[1];
             }
-            alert("hello");
+            // alert("hello");
             if(this.visitedDFS != null){
               if(this.i < this.visitedDFS.length){
                 document.getElementById(this.visitedDFS[this.i]).className = "visited";
@@ -270,7 +271,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .button {
   width: 100px;
   height: 40px;
@@ -348,14 +349,14 @@ p {
   border-radius: 2em;
   padding: 5px;
   box-sizing: border-box;
-  border: 1px solid #8b8a8a;
+  border: 1px solid #6a72a1;
   /* padding: 4px; */
   color: #f3eded;;
   text-align: center;
   justify-content:center;
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #8b8a8a;
+  background-color: #6a72a1;
 
 }
 ::-webkit-scrollbar {

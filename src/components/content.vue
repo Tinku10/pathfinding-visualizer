@@ -8,6 +8,7 @@
     <br>
     <slot name="controls"></slot>
     <br>
+    <br>
     <hr id="col">
     <br>
     <br>
@@ -18,7 +19,7 @@
       <span id="v">Visited</span>
       <span id="path">Path</span>
     </div>
-    <br>
+    
     <br>
     <p>Press INSTANT PATH for a quick path</p>
     <p id="inf">Click the mouse button and move the pointer to draw walls. Click the mouse button again to stop drawing.</p>
@@ -47,20 +48,20 @@ export default {
   
   p{
      display: flex;
-  justify-content: center;
-  flex-direction: row;
-  font-size: 15px;
-  color: white;
-  outline: 2px;
-  padding: 5px;
-  color: gray;
-  font-size: 20px;
-  border-radius: 3px;
-  /* font-family: 'Roboto Slab', serif; */
-  font-family: "Source Sans Pro", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-weight: lighter;
-  background-color: rgb(241, 240, 241);
+    justify-content: center;
+    flex-direction: row;
+    font-size: 15px;
+    color: white;
+    outline: 2px;
+    padding: 5px;
+    color: gray;
+    font-size: 20px;
+    border-radius: 3px;
+    /* font-family: 'Roboto Slab', serif; */
+    font-family: "Source Sans Pro", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: lighter;
+    background-color: rgb(241, 240, 241);
   }
   p#inf{
     font-size: 15px;

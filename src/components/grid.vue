@@ -308,7 +308,6 @@ export default {
               // document.getElementById(this.nodes[xi][xj].name).className = "visited";
             }
           }
-          setTimeout(() => { ("") }, 2000);
           if(this.checkEqual(this.nodes[xi][xj].edges, [null, null, null, null]) == false){
 
             for(let i = 0; i < 4; i++){

@@ -1,11 +1,14 @@
 <template>
+<div id="head">
   <div id="header">
     <span id="b"><button>ABOUT</button></span>
     <span><h2 id="heading">PATHFINDING VISUALIZER</h2></span>
     <span id="sel"><slot name="select"></slot></span>
     
-    
   </div>
+    <h4>A visualization tool to find a path from the source to destination, if present</h4>
+</div>
+  
 </template>
 
 <script>
@@ -77,7 +80,7 @@ button{
   background-repeat: no-repeat;
   border-radius: 2px;
   box-shadow: 0px 1px 3px rgba(255, 255, 255, 0.1);
-  color: #4fc08d;
+  color: #666968;
   font-size: 15px;
   
   font-family: 'Source Sans Pro', sans-serif;
@@ -95,6 +98,11 @@ button{
 }
 #sel{
   margin-top: 17px;
-  margin-right: 50px;
+  margin-right: 10px;
+}
+#head{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>

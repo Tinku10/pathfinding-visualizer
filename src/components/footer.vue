@@ -14,18 +14,16 @@ export default {
   #content{
     
   text-align: center;
-  margin-bottom: -10px;
+  margin-bottom: -20px;
   margin-left: -10px;
   margin-right: -10px;
-  padding: 2px;
+  padding: 4px;
   font-family: 'Fira Sans', sans-serif;
-  color: rgba(255, 255, 255, 0.644);
-  background-color: rgb(17, 0, 27);
+  color: rgba(99, 98, 98, 0.644);
+  background-color: rgb(230, 228, 228);
     
   }
-  #content:hover{
-    box-shadow: rgb(80, 1, 80) 0 0 6px;
-  }
+  
   
  
 

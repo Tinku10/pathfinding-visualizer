@@ -1,16 +1,7 @@
 <template>
   <div>
-    <head-box></head-box>
-    <!-- <br> -->
-    <div id="temp">
-      <!-- <span> -->
-      <!-- <message-box v-if="noPath"></message-box> -->
-      <box-grid  ref="grid" ></box-grid>
-      
-      <!-- </span> -->
-      <!-- <span> -->
-      <content-box>
-        <template id="b" v-slot:select>
+    <head-box>
+       <template v-slot:select>
           <select class="select" v-model="algorithm">
             <option hidden>{{ algorithm }}</option>
             <option>Breadth First Search</option>
@@ -21,8 +12,19 @@
           <br />
           <br />
         </template>
+    </head-box>
+    <br>
+    <div id="temp">
+      <!-- <span> -->
+      <!-- <message-box v-if="noPath"></message-box> -->
+      <box-grid  ref="grid" ></box-grid>
+      
+      <!-- </span> -->
+      <!-- <span> -->
+      <content-box>
+       
 
-        <template v-slot:buttons>
+        <template v-slot:button>
           <div id="b">
             <!-- <button class="button" v-on:click="$refs.grid.createGraph()" >Build </button> -->
             <button
@@ -93,7 +95,7 @@ export default {
       dist: "∞",
       hold: false,
       count: 200,
-      algorithm: "Select an Algorithm",
+      algorithm: "SELECT AN ALGORITHM",
       noPath: true,
       visitedDFS: null, 
       i: 0
@@ -268,22 +270,21 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .button {
   width: 100px;
   height: 40px;
   font-size: 80%;
-  
-  font-weight: bold;
-  font-family: "Alef", sans-serif;
-  color: rgba(171, 126, 223, 0.767);
+  background-color: white;
+  /* font-weight: bold; */
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #4fc08d;
 }
 .button:hover{
-  background-color:rgb(241, 244, 248);
-  border: none;
-  margin: none;
-  outline: none;
-  box-shadow: inset 0 0 10px;
+  background-color: #4fc08d;
+  border: #4fc08d;
+  color: white;
+ 
   cursor:pointer;
 }
 #nc{
@@ -305,45 +306,15 @@ export default {
   box-shadow: 0 0 50px black;
   
 }
-.select {
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -webkit-padding-end: 20px;
-  -moz-padding-end: 20px;
-  -webkit-padding-start: 2px;
-  -moz-padding-start: 2px;
-  cursor: pointer;
-  background-color: rgb(
-    255,
-    255,
-    255
-  ); /* Fallback color if gradients are not supported */
-  background-position: center right;
-  background-repeat: no-repeat;
-  border: 1px solid rgb(245, 245, 245);
-  border-radius: 2px;
-  box-shadow: 0px 1px 3px rgba(255, 255, 255, 0.1);
-  color: #555;
-  font-size: inherit;
-  font-family: "Alef", sans-serif;
-  margin: 0;
-  overflow: hidden;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 350px;
-  height: 30px;
-  border: none;
-  outline: none;
-}
+
 #b {
   display: flex;
   flex-direction: row;
-  justify-content:space-evenly;
-  align-items: center;
+  justify-content:space-between;
+  /* padding: 5px; */
+  margin: 4px;
+
+  
 }
 #temp {
   display: flex;
@@ -371,8 +342,9 @@ p {
   height: 40px;
   flex-direction: column;
   border-radius: 2em;
+  padding: 5px;
   box-sizing: border-box;
-  border: 1px solid #7b6392;
+  border: 1px solid #7b7a7c;
   /* padding: 4px; */
   color: #f3eded;;
   text-align: center;

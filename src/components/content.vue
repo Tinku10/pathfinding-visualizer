@@ -1,8 +1,8 @@
 <template>
   <div id="content">
-    <slot name="select"></slot>
+    <!-- <slot name="select"></slot> -->
     <br>
-    <slot name="buttons"></slot>
+    <slot name="button"></slot>
     <br>
     <slot name="description"></slot>
     <br>
@@ -35,17 +35,17 @@ export default {
 <style scoped>
   #content{
     
-    padding: 5px;
-    background-color: rgba(17, 0, 27);
-    width: 350px;
+    padding: 4px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.3em;
+    box-shadow: 0px 0px 6px rgba(226, 226, 226, 0.589);
+
+    width: 340px;
     height: 540.5px;
-    outline: rgba(17, 0, 27) 1px;
-    outline-style: solid;
+    border: rgb(190, 190, 194) 2px solid;
     
   }
-  #content:hover{
-    box-shadow: rgb(80, 1, 80) 0 0 6px;
-  }
+  
   p#inf{
     display: flex;
     justify-content: center;
@@ -106,4 +106,6 @@ export default {
     border: none;
     margin: none;
   }
+  
+
 </style>

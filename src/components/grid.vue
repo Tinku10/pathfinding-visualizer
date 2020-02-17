@@ -353,7 +353,7 @@ export default {
   background: rgba(255, 255, 255, 0.89);
   width: 25px;
   height: 25px;
-  outline: 1px rgba(199, 194, 209, 0.918);
+  outline: 0.8px #c3c4c4;
   outline-style: solid;
   /* margin-right: 1px;
   margin-bottom: 1px;
@@ -448,10 +448,7 @@ export default {
   width: 25px;
   height: 25px;
 }
-#area:hover{
-  box-shadow: rgb(80, 1, 80) 0 0 4px;
-  
-}
+
 .sd:hover{
   box-shadow: 0 0 6px rgb(141, 141, 214);
 }

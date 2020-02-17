@@ -67,7 +67,9 @@ export default {
     background: rgb(17, 0, 27);
     /* outline-color: white 1px;
     outline-style: solid; */
-    box-shadow: 0 0 2px rgba(96, 73, 138, 0.74);
+    /* box-shadow: 0 0 2px rgba(96, 73, 138, 0.74); */
+    border-radius: 0.2em;
+    border: 1px solid #dbd9dd;
   }
   #nv{
     height: 50px;
@@ -75,7 +77,9 @@ export default {
     background: rgba(255, 255, 255, 0.89);
     /* outline-color: white 1px;
     outline-style: solid; */
-    box-shadow: 0 0 2px rgba(96, 73, 138, 0.74);
+    /* box-shadow: 0 0 2px rgba(96, 73, 138, 0.74); */
+    border-radius: 0.2em;
+    border: 1px solid #dbd9dd;
   }
   #v{
     height: 50px;
@@ -83,7 +87,9 @@ export default {
     background: rgb(116, 213, 226);
     /* outline-color: white 1px;
     outline-style: solid; */
-    box-shadow: 0 0 2px rgba(96, 73, 138, 0.74);
+    /* box-shadow: 0 0 2px rgba(96, 73, 138, 0.74); */
+    border-radius: 0.2em;
+    border: 1px solid #dbd9dd;
   }
   #path{
     height: 50px;
@@ -91,7 +97,9 @@ export default {
     background: rgb(241, 255, 43, 0.719);
     /* outline-color: white 1px;
     outline-style: solid; */
-    box-shadow: 0 0 2px rgba(96, 73, 138, 0.74);
+    /* box-shadow: 0 0 2px rgba(96, 73, 138, 0.74); */
+    border-radius: 0.2em;
+    border: 1px solid #dbd9dd;
   }
   #info{
     /* background-color: rgb(34, 23, 43); */

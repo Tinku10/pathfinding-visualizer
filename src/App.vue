@@ -53,7 +53,7 @@
           <p v-if="algorithm == 'Depth First Search'">
             This may or may not give the shortest path
           </p>
-          <p v-else-if="algorithm == 'Select an Algorithm'">
+          <p v-else-if="algorithm == 'SELECT AN ALGORITHM'">
             SELECT an algorithm and press VISUALIZE
             
           </p>
@@ -279,6 +279,8 @@ export default {
   /* font-weight: bold; */
   font-family: 'Source Sans Pro', sans-serif;
   color: #4fc08d;
+  outline: none;
+  /* border: none; */
 }
 .button:hover{
   background-color: #4fc08d;
@@ -329,12 +331,14 @@ p {
   color: white;
   outline: 2px;
   padding: 5px;
+  color: gray;
+  font-size: 20px;
   border-radius: 3px;
   /* font-family: 'Roboto Slab', serif; */
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-weight: lighter;
-  background-color: rgb(34, 23, 43);
+  background-color: rgb(241, 240, 241);
 }
 #distance{
   display: flex;

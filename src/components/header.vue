@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <span id="b"><button>ABOUT</button></span>
-    <span><h2 id="heading">Pathfinding Visualizer</h2></span>
+    <span><h2 id="heading">PATHFINDING VISUALIZER</h2></span>
     <span id="sel"><slot name="select"></slot></span>
     
     
@@ -53,9 +53,10 @@ button{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* margin-top: 10px;
-  margin-left: -10px;
-  margin-right: -10px; */
+  margin-top: 20px;
+  padding: 10px;
+  /* margin-left: -10px;
+  margin-right: -10px; */ 
 }
 .select {
   -webkit-appearance: button;

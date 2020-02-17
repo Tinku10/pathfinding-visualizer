@@ -38,7 +38,7 @@ export default {
   data: function() {
     return {
       row: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
-      column: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38],
+      column: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37],
         
       hold: false,
       nodes: new Array(22).fill(null).map(() => new Array(39).fill(null)),
@@ -46,7 +46,7 @@ export default {
       si: 11,
       sj: 8,
       di: 11,
-      dj: 30,
+      dj: 29,
       count: 0,
       pathArr: null,
       distance: 0,
@@ -71,7 +71,7 @@ export default {
     // s.onmousedown = function drag(){
     //   s.className = "unvisited";
     //   for (let i = 0; i <= 21; i++) {
-    //     for (let j = 0; j <= 38; j++) {
+    //     for (let j = 0; j <= 37; j++) {
     //       let id = document.getElementById(String(i) + String("-") + String(j));
     //       id.onmouseup = function drop(){
     //         id.className = "sd";
@@ -89,7 +89,7 @@ export default {
     // d.onmousedown = function drag(){
     //   d.className = "unvisited";
     //   for (let i = 0; i <= 21; i++) {
-    //     for (let j = 0; j <= 38; j++) {
+    //     for (let j = 0; j <= 37; j++) {
     //       let id = document.getElementById(String(i) + String("-") + String(j));
     //       id.onmouseup = function drop(){
     //         id.className = "sd";
@@ -133,7 +133,7 @@ export default {
     // },
     insertEdges() {
       for (let i = 0; i <= 21; i++) {
-        for (let j = 0; j <= 38; j++) {
+        for (let j = 0; j <= 37; j++) {
           let node = this.nodes[i][j];
 
           // if (node.hasWall == false) {
@@ -152,7 +152,7 @@ export default {
               node.edges[2] = this.nodes[i][j - 1];
             }
           }
-          if (j + 1 <= 38) {
+          if (j + 1 <= 37) {
             if (this.nodes[i][j + 1].hasWall == false) {
               node.edges[3] = this.nodes[i][j + 1];
             }
@@ -170,7 +170,7 @@ export default {
       // this.instant_result = false;
       bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
-        for (let j = 0; j <= 38; j++) {
+        for (let j = 0; j <= 37; j++) {
 
           if(document.getElementById(String(i) + String("-") + String(j)).className == "visited"){
             document.getElementById(String(i) + String("-") + String(j)).className = "unvisited";
@@ -196,7 +196,7 @@ export default {
       // this.instant_result = false;
       // bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
-        for (let j = 0; j <= 38; j++) {
+        for (let j = 0; j <= 37; j++) {
 
           if(document.getElementById(String(i) + String("-") + String(j)).className == "visited"){
             document.getElementById(String(i) + String("-") + String(j)).className = "unvisited"
@@ -217,7 +217,7 @@ export default {
       // console.log(this.sj);
       // this.draw = false
       for (let i = 0; i <= 21; i++) {
-        for (let j = 0; j <= 38; j++) {
+        for (let j = 0; j <= 37; j++) {
           let id = document.getElementById(String(i) + String("-") + String(j)).id;
           this.nodes[i][j] = {
             name: id,
@@ -353,7 +353,7 @@ export default {
   background: rgba(255, 255, 255, 0.89);
   width: 25px;
   height: 25px;
-  outline: 0.8px #c3c4c4;
+  outline: 1px #d5d6d6;
   outline-style: solid;
   /* margin-right: 1px;
   margin-bottom: 1px;

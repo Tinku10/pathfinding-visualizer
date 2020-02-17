@@ -360,7 +360,7 @@ p {
   padding: 5px;
   border-radius: 3px;
   /* font-family: 'Roboto Slab', serif; */
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Source Sans Pro",  sans-serif;
   -webkit-font-smoothing: antialiased;
   font-weight: lighter;
   background-color: rgb(34, 23, 43);
@@ -379,7 +379,7 @@ p {
   justify-content:center;
   font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #131212;
+  background-color: #140225;
 
 }
 ::-webkit-scrollbar {

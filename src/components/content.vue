@@ -53,7 +53,7 @@ export default {
     outline: 2px;
     padding: 5px;
     border-radius: 3px;
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     background-color: rgb(34, 23, 43);
   }
   #wall{

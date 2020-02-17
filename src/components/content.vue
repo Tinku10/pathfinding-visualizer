@@ -49,12 +49,17 @@ export default {
   p#inf{
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    font-size: 15px;
     color: white;
     outline: 2px;
     padding: 5px;
+    font-size: 15px;
     border-radius: 3px;
+    /* font-family: 'Roboto Slab', serif; */
     font-family: "Source Sans Pro", sans-serif;
-    background-color: rgb(34, 23, 43);
+    -webkit-font-smoothing: antialiased;
+    font-weight: lighter;
   }
   #wall{
     height: 50px;

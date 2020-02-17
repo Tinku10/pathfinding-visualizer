@@ -362,11 +362,11 @@ export default {
 @keyframes example {
   from {
     transform: scale(0.1);
-    background-color: rgba(57, 87, 2, 0.89);
+    background-color: rgba(20, 31, 0, 0.89);
   }
   to {
     transform: scale(1);
-    background-color: rgb(116, 213, 226);
+    background-color: rgba(136, 247, 223, 0.699);
   }
 }
 .visited {
@@ -391,7 +391,7 @@ export default {
   }
   to {
     /* transform: scale(1); */
-    background-color: rgb(17, 0, 27);
+    background-color: rgb(32, 34, 32);
   }
 }
 .wall {
@@ -432,14 +432,14 @@ export default {
 
 @keyframes makepath {
   from {
-    background-color: rgb(175, 149, 2);
+    background-color: rgb(85, 129, 3);
   }
   to {
-    background-color: rgba(241, 255, 43, 0.719);
+    background-color: rgba(237, 248, 134, 0.719);
   }
 }
 .path{
-  background-color: rgb(177, 255, 229);
+  background-color: rgb(181, 248, 167, 0.719);
   animation-name: makepath;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;

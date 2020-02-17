@@ -69,7 +69,7 @@ export default {
   #wall{
     height: 50px;
     width: 50px;
-    background: rgb(17, 0, 27);
+    background: rgb(32, 34, 32);
     /* outline-color: white 1px;
     outline-style: solid; */
     border-radius: 0.3em;
@@ -89,7 +89,7 @@ export default {
   #v{
     height: 50px;
     width: 50px;
-    background: rgb(116, 213, 226);
+    background: rgba(136, 247, 223, 0.699);
     /* outline-color: white 1px;
     outline-style: solid; */
     border-radius: 0.3em;
@@ -99,7 +99,7 @@ export default {
   #path{
     height: 50px;
     width: 50px;
-    background: rgb(241, 255, 43, 0.719);
+    background: rgba(237, 248, 134, 0.719);
     /* outline-color: white 1px;
     outline-style: solid; */
     border-radius: 0.3em;

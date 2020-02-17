@@ -271,11 +271,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .button {
   width: 100px;
   height: 40px;
   font-size: 80%;
+  border-radius: 2em;
   background-color: white;
   /* font-weight: bold; */
   font-family: 'Source Sans Pro', sans-serif;

@@ -1,7 +1,7 @@
 <template>
 <div id="h">
   <div id="header">
-    <span id="b"><button>ABOUT</button></span>
+    <button>ABOUT</button>
     <span><h2 id="heading">PATHFINDING VISUALIZER</h2></span>
     <span id="sel"><slot name="select"></slot></span>
     
@@ -31,15 +31,17 @@ export default {
   /* background-color: rgb(17, 0, 27); */
   /* background-color: rgba(7, 7, 7, 0.863); */
 }
-#b{
+#ba{
   margin-top: 15px;
   margin-left: 50px;
+  
 }
 button{
   width: 140px;
   height: 40px;
   border-radius: 2em;
   margin: 0px;
+  cursor: pointer;
   /* box-sizing: border-box; */
   border: 1px solid #4fc08d;
   text-align: center;
@@ -51,6 +53,7 @@ button{
   /* display: inline-block; */
   color: #fff;
   background-color: #4fc08d;
+  margin: none;
 
 }
 #header{

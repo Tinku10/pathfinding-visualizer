@@ -348,14 +348,14 @@ p {
   border-radius: 2em;
   padding: 5px;
   box-sizing: border-box;
-  border: 1px solid #7b7a7c;
+  border: 1px solid #8b8a8a;
   /* padding: 4px; */
   color: #f3eded;;
   text-align: center;
   justify-content:center;
   font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #131212;
+  background-color: #8b8a8a;
 
 }
 ::-webkit-scrollbar {

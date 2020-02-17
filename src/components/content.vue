@@ -71,6 +71,8 @@ export default {
     background: rgb(17, 0, 27);
     /* outline-color: white 1px;
     outline-style: solid; */
+    border-radius: 0.3em;
+
     border: rgb(190, 190, 194) 1px solid;
   }
   #nv{
@@ -79,6 +81,8 @@ export default {
     background: rgba(255, 255, 255, 0.89);
     /* outline-color: white 1px;
     outline-style: solid; */
+    border-radius: 0.3em;
+
     border: rgb(190, 190, 194) 1px solid;
   }
   #v{
@@ -87,6 +91,8 @@ export default {
     background: rgb(116, 213, 226);
     /* outline-color: white 1px;
     outline-style: solid; */
+    border-radius: 0.3em;
+
     border: rgb(190, 190, 194) 1px solid;
   }
   #path{
@@ -95,6 +101,8 @@ export default {
     background: rgb(241, 255, 43, 0.719);
     /* outline-color: white 1px;
     outline-style: solid; */
+    border-radius: 0.3em;
+
     border: rgb(190, 190, 194) 1px solid;
   }
   #info{

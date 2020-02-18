@@ -95,7 +95,7 @@ export default {
       count: 200,
       algorithm: "Select an Algorithm",
       noPath: true,
-      visitedDFS: null, 
+      visitedDFS: [], 
       i: 0
       // instantB: false
       // rows: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
@@ -110,20 +110,16 @@ export default {
     bus.$on("stop", data => {
       this.path = data.p;
       this.dist = data.d;
+      this.visitedDFS = data.dfs;
       this.count = 1;
     });
-    // bus.$on("inst", data => {
-    //   console.log("dsf");
-    //   console.log(data);
-    //   this.instantB = data;
-    // })
+    bus.$on("dfs", data =>{
+      this.visitedDFS = data[0];
+      this.path = data[1];
+    } )
     
     this.interval = setInterval(() => this.draw(), 15);
     this.interval = setInterval(() => this.drawPath(), 20);
-    
-    
-
-    
     
   },
   // updated(){
@@ -137,7 +133,7 @@ export default {
         if(this.algorithm == "Depth First Search"){
           if(document.getElementById(this.path[length-1].name.className == "visited")){
             if(this.count < this.path.length){
-              this.i = 0;
+              // this.i = 0;
               document.getElementById(this.path[this.count].name).className = "path";
               this.count++;
             }
@@ -169,7 +165,7 @@ export default {
             }
           }
         }else if(this.algorithm == "Depth First Search"){
-          [this.path, this.visitedDFS] = this.$refs.grid.DFS(false);
+          [this.path, this.visitedDFS] = this.$refs.grid.DFS();
           i ++;
           if(i>800){
             if(this.path == null){
@@ -182,42 +178,21 @@ export default {
       }
     },
     draw() {
-      // if(this.hold == true){
-        //   this.hold = false;
-      // this.$refs.grid.BFSsearch();
-      // this.hold++;
-      // }
-      // let i = 0;
-      // console.log(this.dist);
-      // if(this.instantB == true){
-      //   while (this.path == null) {
-      //     this.$refs.grid.BFSsearch();
-      //   }
-      // }else{
-        // let i = 0;
+     
         if (this.path == null) {
           if(this.algorithm == "Breadth First Search"){
             this.$refs.grid.BFSsearch(true);
-            // i++;
-            // if(i>800){
-            //   if(this.path != null){
-            //     this.noPath = false;
-            //     clearInterval(this.interval);
-          
-            //   }
-            // }
+            
           }else if(this.algorithm == "Depth First Search"){
-            alert("fds");
             if(this.i == 0){
-              let a = this.$refs.grid.DFS(true);
-              this.path = a[0];
-              this.visitedDFS = a[1];
+              this.$refs.grid.DFS();
             }
-            alert("hello");
-            if(this.visitedDFS != null){
+            
+            if(this.visitedDFS.length > 0){
+              this.i ++;
+              console.log(this.i);
               if(this.i < this.visitedDFS.length){
                 document.getElementById(this.visitedDFS[this.i]).className = "visited";
-                this.i ++;
 
               }
             }

@@ -52,6 +52,7 @@ export default {
       distance: 0,
       draw: true,
       dfsVisited: [],
+      p: null,
       q: new Queue()
       // destination: document.getElementById('9'+'-'+'25').setAttribute("class", "destination")
     };
@@ -166,9 +167,12 @@ export default {
     },
     clearCanvas(){
       bus.$emit("stop", {p: null, d: "∞"});
+      this.pathArr = null;
+      this.p = null;
+      this.dfsVisited = null;
       this.q = new Queue();
       // this.instant_result = false;
-      bus.$emit("inst", false);
+      // bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
         for (let j = 0; j <= 38; j++) {
 
@@ -191,8 +195,11 @@ export default {
       }
     },
     clearPath(){
-      bus.$emit("stop", {p: null, d: "∞"});
+      bus.$emit("stop", {p: null, d: "∞", dfs: null});
       this.q = new Queue();
+      this.pathArr = null;
+      this.p = null;
+      this.dfsVisited = null;
       // this.instant_result = false;
       // bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -296,19 +303,14 @@ export default {
       }
       return true
     },
-    DFShelper(xi, xj, yi, yj, show){
+    DFShelper(xi, xj, yi, yj){
       if(this.nodes[xi][xj]){
         if(this.nodes[xi][xj].visited == false){
           this.nodes[xi][xj].visited = true;
-          if(show == true){
-            if(document.getElementById(this.nodes[xi][xj].name).className == "sd"){
-              document.getElementById(this.nodes[xi][xj].name).className = "sd";
-            }else{
-              this.dfsVisited = this.dfsVisited.concat(this.nodes[xi][xj].name);
-              // document.getElementById(this.nodes[xi][xj].name).className = "visited";
-            }
+          if(this.nodes[xi][xj].className != "sd"){
+            this.dfsVisited = this.dfsVisited.concat(this.nodes[xi][xj].name);
           }
-          setTimeout(() => { ("") }, 2000);
+          // document.getElementById(this.nodes[xi][xj].name).className = "visited";
           if(this.checkEqual(this.nodes[xi][xj].edges, [null, null, null, null]) == false){
 
             for(let i = 0; i < 4; i++){
@@ -318,7 +320,7 @@ export default {
                 if(node.pi == yi && node.pj == yj){
                   return [node];
                 }
-                let p = this.DFShelper(node.pi, node.pj, yi, yj, show);
+                let p = this.DFShelper(node.pi, node.pj, yi, yj);
                 if(p != null){
                   return p.concat(node);
                 }
@@ -336,9 +338,9 @@ export default {
       }
     },
     DFS(show){
-      let p = this.DFShelper(this.si, this.sj, this.di, this.dj, show);
-      if(p != null){
-        return [p, this.dfsVisited];
+      this.p = this.DFShelper(this.si, this.sj, this.di, this.dj, show);
+      if(this.p != null){
+        bus.$emit("dfs", [this.dfsVisited, this.p]);
 
       }
     }

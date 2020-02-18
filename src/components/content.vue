@@ -34,10 +34,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #content {
   padding: 4px;
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff23;
   border-radius: 0.3em;
   /* box-shadow: 0px 0px 6px rgba(226, 226, 226, 0.589); */
   width: 352px;
@@ -46,6 +46,7 @@ export default {
 }
 
 p {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -63,9 +64,13 @@ p {
   background-color: rgb(241, 240, 241);
 }
 p#inf {
+  position: relative;
+  margin-bottom: 2px;
   font-size: 15px;
 }
 #wall {
+  position: relative;
+
   height: 50px;
   width: 50px;
   background: rgb(32, 34, 32);
@@ -75,6 +80,8 @@ p#inf {
   border: rgb(190, 190, 194) 1px solid;
 }
 #nv {
+  position: relative;
+
   height: 50px;
   width: 50px;
   background: rgba(255, 255, 255, 0.89);
@@ -85,6 +92,8 @@ p#inf {
   border: rgb(190, 190, 194) 1px solid;
 }
 #v {
+  position: relative;
+
   height: 50px;
   width: 50px;
   background: rgba(136, 247, 223, 0.699);
@@ -94,6 +103,8 @@ p#inf {
   border: rgb(190, 190, 194) 1px solid;
 }
 #path {
+  position: relative;
+
   height: 50px;
   width: 50px;
   background: rgba(237, 248, 134, 0.719);
@@ -103,6 +114,8 @@ p#inf {
   border: rgb(190, 190, 194) 1px solid;
 }
 #info {
+  position: relative;
+
   /* background-color: rgb(34, 23, 43); */
   display: flex;
   flex-direction: row;
@@ -115,6 +128,8 @@ p#inf {
   color: rgb(102, 101, 102);
 }
 #col {
+  position: relative;
+
   background-color: rgb(225, 225, 230);
   height: 8px;
   border: none;

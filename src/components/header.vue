@@ -6,8 +6,21 @@
     <span id="sel"><slot name="select"></slot></span>
     
   </div>
+  <article>
+    <section>
+    <h4>Visualize</h4>
+    <p class="content">Intutive interface and options to quickly visualize the path-finding.</p>
+  </section>
+  <section>
+    <h4>Try different algorithms</h4>
+    <p class="content">Try from the dropdown different algorithms to see its working. </p>
+  </section>
+  <section>
+    <h4>Put obstacles</h4>
+    <p class="content">Obstacles can be inserted in the path to see how the algorithm resolves around these obstacles.</p>
+  </section>
+  </article>
   
-  <!-- <h5>A visualization tool to find a path from the source to the destination, if present</h5> -->
 </div>
   
 </template>
@@ -18,7 +31,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #heading {
   text-align: center;
   
@@ -32,7 +45,7 @@ export default {
   /* background-color: rgba(7, 7, 7, 0.863); */
 }
 #ba{
-  margin-top: 15px;
+  margin-top: 18px;
   margin-left: 50px;
   
 }
@@ -40,7 +53,6 @@ button{
   width: 140px;
   height: 40px;
   border-radius: 2em;
-  margin: 0px;
   cursor: pointer;
   /* box-sizing: border-box; */
   border: 1px solid #4fc08d;
@@ -100,22 +112,49 @@ button{
   border-radius: 2em;
   outline: none;
 }
-#sel{
+/* #sel{
   margin-top: 12px;
   margin-right: 10px;
-}
+} */
 #h{
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-h5{
+h4{
   font-size: 20px; 
   align-content: center;
-  font-style: italic;
-  font-weight: lighter;
-  padding: 10px;
+  /* font-style: italic; */
+  font-weight: bold;
+  padding: 1px;
   font-family: 'Source Sans Pro', sans-serif;
-  margin: 0px;
+  margin: none;
+  border: none;
+}
+section{
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+
+}
+article{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  font-family: 'Source Sans Pro', sans-serif;
+  color:#4fc08d;
+  font-weight: lighter;
+  font-size: 18px;
+  padding: 10px;
+}
+.content{
+  align-content: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  color:rgba(48, 46, 46, 0.979);
+  margin: none;
 }
 </style>

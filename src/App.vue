@@ -262,6 +262,8 @@ export default {
 
 <style scoped>
 .button {
+  position: relative;
+
   width: 100px;
   height: 40px;
   font-size: 80%;
@@ -270,6 +272,7 @@ export default {
   /* font-weight: bold; */
   font-family: "Source Sans Pro", sans-serif;
   color: #4fc08d;
+  border: #4fc08d 1px solid;
   outline: none;
   /* border: none; */
 }
@@ -281,6 +284,8 @@ export default {
   cursor: pointer;
 }
 #nc {
+  position: relative;
+
   width: 100px;
   height: 50px;
   font-size: 80%;
@@ -290,6 +295,8 @@ export default {
   background-color: rgba(255, 255, 255, 0.767);
 }
 #c {
+  position: relative;
+
   width: 100px;
   height: 50px;
   font-size: 80%;
@@ -300,6 +307,8 @@ export default {
 }
 
 #b {
+  position: relative;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -307,11 +316,14 @@ export default {
   margin: 4px;
 }
 #temp {
+  position: relative;
+
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 p {
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -329,6 +341,8 @@ p {
   background-color: rgb(241, 240, 241);
 }
 #distance {
+  position: relative;
+
   display: flex;
   width: 100px;
   height: 40px;
@@ -336,14 +350,14 @@ p {
   border-radius: 2em;
   padding: 5px;
   box-sizing: border-box;
-  border: 1px solid #6a72a1;
+  border: 1px solid #434346;
   /* padding: 4px; */
   color: #f3eded;
   text-align: center;
   justify-content: center;
   font-family: "Source Sans Pro", sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #6a72a1;
+  background-color: #434346;
 }
 ::-webkit-scrollbar {
   width: 6px;

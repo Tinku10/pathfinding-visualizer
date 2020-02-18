@@ -1,29 +1,27 @@
 <template>
   <div>
     <head-box>
-       <template v-slot:select>
-          <select class="select" v-model="algorithm">
-            <option style="color: #4fc08d;" hidden>{{ algorithm }}</option>
-            <option>Breadth First Search</option>
-            <option>Depth First Search</option>
-            <option>Dijkstra's Algorithm</option>
-            <option>Bellman-Ford's Algorithm</option>
-          </select>
-          <br />
-          <br />
-        </template>
+      <template v-slot:select>
+        <select class="select" v-model="algorithm">
+          <option style="color: #4fc08d;" hidden>{{ algorithm }}</option>
+          <option>Breadth First Search</option>
+          <option>Depth First Search</option>
+          <option>Dijkstra's Algorithm</option>
+          <option>Bellman-Ford's Algorithm</option>
+        </select>
+        <br />
+        <br />
+      </template>
     </head-box>
-    <br>
+    <br />
     <div id="temp">
       <!-- <span> -->
       <!-- <message-box v-if="noPath"></message-box> -->
-      <box-grid  ref="grid" ></box-grid>
-      
+      <box-grid ref="grid"></box-grid>
+
       <!-- </span> -->
       <!-- <span> -->
       <content-box>
-       
-
         <template v-slot:button>
           <div id="b">
             <!-- <button class="button" v-on:click="$refs.grid.createGraph()" >Build </button> -->
@@ -35,33 +33,28 @@
                 hold = !hold;
               "
               v-bind:pathArr="path"
-            >
-              Visualize
-            </button>
+            >Visualize</button>
             <div id="distance">
               <span>{{dist}}</span>
-              <label for=""><small>Distance</small></label>
+              <label for>
+                <small>Distance</small>
+              </label>
             </div>
-            
-              <button  class="button"  v-on:click="$refs.grid.createGraph();
-                drawi();">Instant Path</button>
-            
 
+            <button
+              class="button"
+              v-on:click="$refs.grid.createGraph();
+                drawi();"
+            >Instant Path</button>
           </div>
         </template>
         <template v-slot:description>
-          <p v-if="algorithm == 'Depth First Search'">
-            This may or may not give the shortest path
-          </p>
-          <p v-else-if="algorithm == 'SELECT AN ALGORITHM'">
-            SELECT an algorithm and press VISUALIZE
-            
-          </p>
+          <p v-if="algorithm == 'Depth First Search'">This may or may not give the shortest path</p>
+          <p v-else-if="algorithm == 'SELECT AN ALGORITHM'">SELECT an algorithm and press VISUALIZE</p>
           <p v-else>This gives the shortest path possible</p>
-          
         </template>
 
-        <template  v-slot:controls>
+        <template v-slot:controls>
           <div id="b">
             <button class="button" v-on:click="$refs.grid.clearCanvas()">Clear Canvas</button>
             <button class="button" v-on:click="$refs.grid.clearPath()">Clear Path</button>
@@ -71,8 +64,8 @@
 
       <!-- </span> -->
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
     <foot></foot>
   </div>
 </template>
@@ -88,7 +81,7 @@ export default {
     "box-grid": grid,
     "content-box": content,
     "head-box": header,
-    "foot": footer
+    foot: footer
   },
   data() {
     return {
@@ -98,7 +91,7 @@ export default {
       count: 200,
       algorithm: "SELECT AN ALGORITHM",
       noPath: true,
-      visitedDFS: null, 
+      visitedDFS: null,
       i: 0
       // instantB: false
       // rows: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
@@ -120,73 +113,67 @@ export default {
     //   console.log(data);
     //   this.instantB = data;
     // })
-    
+
     this.interval = setInterval(() => this.draw(), 15);
     this.interval = setInterval(() => this.drawPath(), 20);
-    
-    
-
-    
-    
   },
   // updated(){
   //     this.draw()
   // },
-  
-  
+
   methods: {
-    drawPath(){
+    drawPath() {
       // if(this.path){
-        if(this.algorithm == "Depth First Search"){
-          if(document.getElementById(this.path[length-1].name.className == "visited")){
-            if(this.count < this.path.length){
-              this.i = 0;
-              document.getElementById(this.path[this.count].name).className = "path";
-              this.count++;
-            }
-
-          }
-
-        }else{
-          if(this.count < this.path.length-1){
-  
-            document.getElementById(this.path[this.count].name).className = "path";
+      if (this.algorithm == "Depth First Search") {
+        if (
+          document.getElementById(
+            this.path[length - 1].name.className == "visited"
+          )
+        ) {
+          if (this.count < this.path.length) {
+            this.i = 0;
+            document.getElementById(this.path[this.count].name).className =
+              "path";
             this.count++;
           }
         }
+      } else {
+        if (this.count < this.path.length - 1) {
+          document.getElementById(this.path[this.count].name).className =
+            "path";
+          this.count++;
+        }
+      }
 
-        
       // }
-      
     },
-    drawi(){
+    drawi() {
       let i = 0;
       while (this.path == null) {
-        if(this.algorithm == "Breadth First Search"){
+        if (this.algorithm == "Breadth First Search") {
           this.$refs.grid.BFSsearch(false);
-          i ++;
-          if(i>800){
-            if(this.path != null){
+          i++;
+          if (i > 800) {
+            if (this.path != null) {
               this.noPath = false;
               break;
             }
           }
-        }else if(this.algorithm == "Depth First Search"){
+        } else if (this.algorithm == "Depth First Search") {
           [this.path, this.visitedDFS] = this.$refs.grid.DFS(false);
-          i ++;
-          if(i>800){
-            if(this.path == null){
+          i++;
+          if (i > 800) {
+            if (this.path == null) {
               this.noPath = true;
               break;
             }
           }
         }
-          
       }
     },
     draw() {
       // if(this.hold == true){
-        //   this.hold = false;
+      //   this.hold = false;
       // this.$refs.grid.BFSsearch();
       // this.hold++;
       // }
@@ -197,76 +184,73 @@ export default {
       //     this.$refs.grid.BFSsearch();
       //   }
       // }else{
-        // let i = 0;
-        if (this.path == null) {
-          if(this.algorithm == "Breadth First Search"){
-            this.$refs.grid.BFSsearch(true);
-            // i++;
-            // if(i>800){
-            //   if(this.path != null){
-            //     this.noPath = false;
-            //     clearInterval(this.interval);
-          
-            //   }
-            // }
-          }else if(this.algorithm == "Depth First Search"){
-            // alert("fds");
-            if(this.i == 0){
-              let a = this.$refs.grid.DFS(true);
-              this.path = a[0];
-              this.visitedDFS = a[1];
+      // let i = 0;
+      if (this.path == null) {
+        if (this.algorithm == "Breadth First Search") {
+          this.$refs.grid.BFSsearch(true);
+          // i++;
+          // if(i>800){
+          //   if(this.path != null){
+          //     this.noPath = false;
+          //     clearInterval(this.interval);
+
+          //   }
+          // }
+        } else if (this.algorithm == "Depth First Search") {
+          // alert("fds");
+          if (this.i == 0) {
+            let a = this.$refs.grid.DFS(true);
+            this.path = a[0];
+            this.visitedDFS = a[1];
+          }
+          // alert("hello");
+          if (this.visitedDFS != null) {
+            if (this.i < this.visitedDFS.length) {
+              document.getElementById(this.visitedDFS[this.i]).className =
+                "visited";
+              this.i++;
             }
-            // alert("hello");
-            if(this.visitedDFS != null){
-              if(this.i < this.visitedDFS.length){
-                document.getElementById(this.visitedDFS[this.i]).className = "visited";
-                this.i ++;
+          }
 
-              }
-            }
+          // i ++;
+          // if(i>800){
+          //   if(this.path != null){
+          //     this.noPath = false;
+          //     clearInterval(this.interval);
 
-                        
-            // i ++;
-            // if(i>800){
-            //   if(this.path != null){
-            //     this.noPath = false;
-            //     clearInterval(this.interval);
-
-            //   }
-            // }
+          //   }
+          // }
           // }
         }
-          
-        }
+      }
       // }
 
-        // i++;
-      }
-
+      // i++;
     }
-    // drag(){
-    //   let s = document.getElementById(String(this.sx)+String("-")+String(this.sy));
-    //   s.className = "unvisited";
-    //   for (let i = 0; i <= 21; i++) {
-    //     for (let j = 0; j <= 38; j++) {
-    //       let id = document.getElementById(String(i) + String("-") + String(j));
-    //       id.onmouseup = function drop(){
-    //         id.className = "sd";
-    //         var ar = id.id.split("-");
-    //         this.sx = parseInt(ar[0]);
-    //         this.sy = parseInt(ar[1]);
-    //       }
-    //     }
-    //   }
-    // },
-    // update(){
-    //   console.log("called");
-    //   let s = document.getElementById(String(this.sx)+String("-")+String(this.sy));
-    //   s.onmousedown
-    //   return true;
-    // // dispPath(event) {
-    // //   this.path = event;
-    // }
+  }
+  // drag(){
+  //   let s = document.getElementById(String(this.sx)+String("-")+String(this.sy));
+  //   s.className = "unvisited";
+  //   for (let i = 0; i <= 21; i++) {
+  //     for (let j = 0; j <= 38; j++) {
+  //       let id = document.getElementById(String(i) + String("-") + String(j));
+  //       id.onmouseup = function drop(){
+  //         id.className = "sd";
+  //         var ar = id.id.split("-");
+  //         this.sx = parseInt(ar[0]);
+  //         this.sy = parseInt(ar[1]);
+  //       }
+  //     }
+  //   }
+  // },
+  // update(){
+  //   console.log("called");
+  //   let s = document.getElementById(String(this.sx)+String("-")+String(this.sy));
+  //   s.onmousedown
+  //   return true;
+  // // dispPath(event) {
+  // //   this.path = event;
+  // }
   // }
 };
 </script>
@@ -279,19 +263,19 @@ export default {
   border-radius: 2em;
   background-color: white;
   /* font-weight: bold; */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   color: #4fc08d;
   outline: none;
   /* border: none; */
 }
-.button:hover{
+.button:hover {
   background-color: #4fc08d;
   border: #4fc08d;
   color: white;
- 
-  cursor:pointer;
+
+  cursor: pointer;
 }
-#nc{
+#nc {
   width: 100px;
   height: 50px;
   font-size: 80%;
@@ -300,7 +284,7 @@ export default {
   color: rgba(171, 126, 223, 0.767);
   background-color: rgba(255, 255, 255, 0.767);
 }
-#c{
+#c {
   width: 100px;
   height: 50px;
   font-size: 80%;
@@ -308,22 +292,19 @@ export default {
   font-family: "Alef", sans-serif;
   color: rgba(171, 126, 223, 0.767);
   box-shadow: 0 0 50px black;
-  
 }
 
 #b {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
   /* padding: 5px; */
   margin: 4px;
-
-  
 }
 #temp {
   display: flex;
   flex-direction: row;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
 }
 p {
   display: flex;
@@ -342,7 +323,7 @@ p {
   font-weight: lighter;
   background-color: rgb(241, 240, 241);
 }
-#distance{
+#distance {
   display: flex;
   width: 100px;
   height: 40px;
@@ -352,13 +333,12 @@ p {
   box-sizing: border-box;
   border: 1px solid #6a72a1;
   /* padding: 4px; */
-  color: #f3eded;;
+  color: #f3eded;
   text-align: center;
-  justify-content:center;
+  justify-content: center;
   font-family: "Source Sans Pro", sans-serif;
   -webkit-font-smoothing: antialiased;
   background-color: #6a72a1;
-
 }
 ::-webkit-scrollbar {
   width: 6px;

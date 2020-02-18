@@ -30,7 +30,8 @@
               v-on:click="
                 $refs.grid.createGraph();
                 draw();
-                hold = !hold;
+                hold = true;
+                b = 'viz'
               "
               v-bind:pathArr="path"
             >Visualize</button>
@@ -44,7 +45,9 @@
             <button
               class="button"
               v-on:click="$refs.grid.createGraph();
-                drawi();"
+                drawi();
+                hold = true;
+                b = 'ins'"
             >Instant Path</button>
           </div>
         </template>
@@ -92,7 +95,8 @@ export default {
       algorithm: "SELECT AN ALGORITHM",
       noPath: true,
       visitedDFS: null,
-      i: 0
+      i: -1,
+      b: null
       // instantB: false
       // rows: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
       // columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38],
@@ -106,7 +110,11 @@ export default {
     bus.$on("stop", data => {
       this.path = data.p;
       this.dist = data.d;
-      this.count = 1;
+      this.count = 0;
+      this.hold = false;
+      this.noPath = true;
+      this.visitedDFS = null;
+      this.i = -1;
     });
     // bus.$on("inst", data => {
     //   console.log("dsf");
@@ -123,24 +131,30 @@ export default {
 
   methods: {
     drawPath() {
-      // if(this.path){
-      if (this.algorithm == "Depth First Search") {
-        if (
-          document.getElementById(
-            this.path[length - 1].name.className == "visited"
-          )
-        ) {
-          if (this.count < this.path.length) {
-            this.i = 0;
+      if (
+        this.algorithm == "Depth First Search" &&
+        this.path != null &&
+        this.i == this.visitedDFS.length
+      ) {
+        if (this.count < this.path.length) {
+          if (
+            document.getElementById(this.path[this.count].name).className !=
+            "sd"
+          ) {
             document.getElementById(this.path[this.count].name).className =
               "path";
-            this.count++;
           }
+          this.count++;
         }
-      } else {
+      } else if(this.algorithm == "Breadth First Search"){
         if (this.count < this.path.length - 1) {
-          document.getElementById(this.path[this.count].name).className =
-            "path";
+          if (
+            document.getElementById(this.path[this.count].name).className !=
+            "sd"
+          ) {
+            document.getElementById(this.path[this.count].name).className =
+              "path";
+          }
           this.count++;
         }
       }
@@ -148,70 +162,65 @@ export default {
       // }
     },
     drawi() {
-      let i = 0;
-      while (this.path == null) {
+      // let i = 0;
+      
         if (this.algorithm == "Breadth First Search") {
-          this.$refs.grid.BFSsearch(false);
-          i++;
-          if (i > 800) {
-            if (this.path != null) {
-              this.noPath = false;
-              break;
-            }
-          }
-        } else if (this.algorithm == "Depth First Search") {
-          [this.path, this.visitedDFS] = this.$refs.grid.DFS(false);
-          i++;
-          if (i > 800) {
-            if (this.path == null) {
-              this.noPath = true;
-              break;
-            }
+          while (this.path == null) {
+            this.$refs.grid.BFSsearch(false);
+            // i ++;
+            // if(i>800){
+            //   if(this.path != null){
+            //     this.noPath = false;
+            //     break;
+            //   }
+            // }
           }
         }
-      }
+        
+      
     },
     draw() {
-      // if(this.hold == true){
-      //   this.hold = false;
-      // this.$refs.grid.BFSsearch();
-      // this.hold++;
-      // }
-      // let i = 0;
-      // console.log(this.dist);
-      // if(this.instantB == true){
-      //   while (this.path == null) {
-      //     this.$refs.grid.BFSsearch();
-      //   }
-      // }else{
-      // let i = 0;
+    if (this.algorithm == "Breadth First Search") {
       if (this.path == null) {
-        if (this.algorithm == "Breadth First Search") {
-          this.$refs.grid.BFSsearch(true);
-          // i++;
-          // if(i>800){
-          //   if(this.path != null){
-          //     this.noPath = false;
-          //     clearInterval(this.interval);
-
-          //   }
-          // }
-        } else if (this.algorithm == "Depth First Search") {
-          // alert("fds");
-          if (this.i == 0) {
-            let a = this.$refs.grid.DFS(true);
-            this.path = a[0];
-            this.visitedDFS = a[1];
-          }
-          // alert("hello");
-          if (this.visitedDFS != null) {
-            if (this.i < this.visitedDFS.length) {
-              document.getElementById(this.visitedDFS[this.i]).className =
-                "visited";
-              this.i++;
-            }
+        this.$refs.grid.BFSsearch(true);
+      }
+    }
+    else if (this.algorithm == "Depth First Search") {
+      let a = null;
+      if (this.i == -1) {
+        a = this.$refs.grid.DFS();
+        this.path = a[0];
+        this.visitedDFS = a[1];
+        this.i++;
+      } else {
+        if(this.b == 'viz'){
+          if (this.i < this.visitedDFS.length) {
+            document.getElementById(this.visitedDFS[this.i]).className =
+              "visited";
+            this.i++;
+  
           }
 
+        }else{
+          this.i = this.visitedDFS.length;
+        }
+      }
+
+        // i ++;
+        // if(i>800){
+        //   if(this.path != null){
+        //     this.noPath = false;
+        //     clearInterval(this.interval);
+
+        //   }
+        // }
+        // }
+      }
+      // }
+
+      // i++;
+    }
+  
           // i ++;
           // if(i>800){
           //   if(this.path != null){
@@ -221,12 +230,8 @@ export default {
           //   }
           // }
           // }
-        }
-      }
-      // }
-
-      // i++;
-    }
+        
+     
   }
   // drag(){
   //   let s = document.getElementById(String(this.sx)+String("-")+String(this.sy));

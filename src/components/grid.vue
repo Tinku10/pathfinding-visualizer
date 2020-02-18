@@ -167,6 +167,7 @@ export default {
     clearCanvas(){
       bus.$emit("stop", {p: null, d: "∞"});
       this.q = new Queue();
+      this.dfsVisited = [];
       // this.instant_result = false;
       bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -193,6 +194,7 @@ export default {
     clearPath(){
       bus.$emit("stop", {p: null, d: "∞"});
       this.q = new Queue();
+      this.dfsVisited = [];
       // this.instant_result = false;
       // bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -296,17 +298,16 @@ export default {
       }
       return true
     },
-    DFShelper(xi, xj, yi, yj, show){
+    DFShelper(xi, xj, yi, yj){
       if(this.nodes[xi][xj]){
         if(this.nodes[xi][xj].visited == false){
           this.nodes[xi][xj].visited = true;
-          if(show == true){
             if(document.getElementById(this.nodes[xi][xj].name).className == "sd"){
               document.getElementById(this.nodes[xi][xj].name).className = "sd";
             }else{
               this.dfsVisited = this.dfsVisited.concat(this.nodes[xi][xj].name);
               // document.getElementById(this.nodes[xi][xj].name).className = "visited";
-            }
+            
           }
           if(this.checkEqual(this.nodes[xi][xj].edges, [null, null, null, null]) == false){
 
@@ -317,7 +318,7 @@ export default {
                 if(node.pi == yi && node.pj == yj){
                   return [node];
                 }
-                let p = this.DFShelper(node.pi, node.pj, yi, yj, show);
+                let p = this.DFShelper(node.pi, node.pj, yi, yj);
                 if(p != null){
                   return p.concat(node);
                 }
@@ -334,8 +335,8 @@ export default {
         }
       }
     },
-    DFS(show){
-      let p = this.DFShelper(this.si, this.sj, this.di, this.dj, show);
+    DFS(){
+      let p = this.DFShelper(this.si, this.sj, this.di, this.dj);
       if(p != null){
         return [p, this.dfsVisited];
 

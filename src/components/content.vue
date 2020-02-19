@@ -49,6 +49,7 @@ p {
   position: relative;
   display: flex;
   justify-content: center;
+  text-align: center;
   flex-direction: row;
   font-size: 15px;
   color: white;
@@ -67,6 +68,8 @@ p#inf {
   position: relative;
   margin-bottom: 2px;
   font-size: 15px;
+  justify-content: center;
+  align-items: center;
 }
 #wall {
   position: relative;

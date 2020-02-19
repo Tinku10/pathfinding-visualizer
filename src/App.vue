@@ -14,6 +14,7 @@
       </template>
     </head-box>
     <br />
+    <br/>
     <div id="temp">
       <!-- <span> -->
       <!-- <message-box v-if="noPath"></message-box> -->
@@ -274,6 +275,7 @@ export default {
   color: #4fc08d;
   border: #4fc08d 1px solid;
   outline: none;
+  margin: none;
   /* border: none; */
 }
 .button:hover {

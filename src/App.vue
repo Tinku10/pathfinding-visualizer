@@ -375,7 +375,7 @@ p {
   background: rgba(165, 160, 160, 0.637);
 }
 #line {
-  background: linear-gradient(90deg,blue,#8ed6fb 50%,#d32e9d);
+  background: linear-gradient(90deg,grey,#8ed6fb 50%,green);
   /* height: 0.5em; */
   padding: 1px;
   margin-left: -10px;

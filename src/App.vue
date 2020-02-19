@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div id="line"></div>
+
     <head-box>
       <template v-slot:select>
         <select class="select" v-model="algorithm">
@@ -137,6 +139,7 @@ export default {
         this.path != null &&
         this.i == this.visitedDFS.length
       ) {
+        this.dist = this.path.length;
         if (this.count < this.path.length) {
           if (
             document.getElementById(this.path[this.count].name).className !=
@@ -352,14 +355,14 @@ p {
   border-radius: 2em;
   padding: 5px;
   box-sizing: border-box;
-  border: 1px solid #434346;
+  border: 1px solid #4fc08d;
   /* padding: 4px; */
   color: #f3eded;
   text-align: center;
   justify-content: center;
   font-family: "Source Sans Pro", sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #434346;
+  background-color: #4fc08d;
 }
 ::-webkit-scrollbar {
   width: 6px;
@@ -370,5 +373,15 @@ p {
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(165, 160, 160, 0.637);
+}
+#line {
+  background: linear-gradient(90deg,blue,#8ed6fb 50%,#d32e9d);
+  /* height: 0.5em; */
+  padding: 1px;
+  margin-left: -10px;
+  margin-right: -10px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
 }
 </style>

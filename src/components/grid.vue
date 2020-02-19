@@ -52,7 +52,8 @@ export default {
       distance: 0,
       draw: true,
       dfsVisited: [],
-      q: new Queue()
+      q: new Queue(),
+      edges: []
       // destination: document.getElementById('9'+'-'+'25').setAttribute("class", "destination")
     };
   },
@@ -140,21 +141,25 @@ export default {
           if (i - 1 >= 0) {
             if (this.nodes[i - 1][j].hasWall == false) {
               node.edges[0] = this.nodes[i - 1][j];
+              this.edges.concat({nodef: node, nodet: node.edges[0]});
             }
           }
           if (i + 1 <= 21) {
             if (this.nodes[i + 1][j].hasWall == false) {
               node.edges[1] = this.nodes[i + 1][j];
+              this.edges.concat({nodef: node, nodet: node.edges[1]});
             }
           }
           if (j - 1 >= 0) {
             if (this.nodes[i][j - 1].hasWall == false) {
               node.edges[2] = this.nodes[i][j - 1];
+              this.edges.concat({nodef: node, nodet: node.edges[2]});
             }
           }
           if (j + 1 <= 37) {
             if (this.nodes[i][j + 1].hasWall == false) {
               node.edges[3] = this.nodes[i][j + 1];
+              this.edges.concat({nodef: node, nodet: node.edges[3]});
             }
           }
           // console.log(node.edges);
@@ -341,6 +346,18 @@ export default {
         return [p, this.dfsVisited];
 
       }
+    },
+    bellmanFord(){
+      for(let i = 0; i < 22*38-1; i++){
+        for(let j = 0; j < this.edges.length; j++){
+          if(this.edges[j].nodef.distance + 1 < this.edges[j].nodet.distance){
+            this.edges[j].nodet.distance = this.edges[j].nodef.distance + 1;
+          }
+          this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj] = [this.edges[j].nodet];
+          this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj] = this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj].concat(this.path[this.edges[j].nodef.pi][this.edges[j].nodef.pj]);
+        }
+      }
+      return this.path[this.di][this.dj];
     }
   }
 };

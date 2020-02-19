@@ -17,22 +17,22 @@
     </div>
     <article>
       <section>
-        <h4>Visualize</h4>
+        <h4>Select an algorithm</h4>
         <p class="content">
-          Intutive interface and options to quickly visualize the path-finding.
-        </p>
-      </section>
-      <section>
-        <h4>Try different algorithms</h4>
-        <p class="content">
-          Try from the dropdown different algorithms to see its working.
+          Try different algorithms from the dropdown to see its working.
         </p>
       </section>
       <section>
         <h4>Put obstacles</h4>
         <p class="content">
           Obstacles can be inserted in the path to see how the algorithm
-          resolves around these obstacles.
+          resolves around these obstacles. It is purely optional.
+        </p>
+      </section>
+      <section>
+        <h4>Visualize</h4>
+        <p class="content">
+          Intutive interface and options to quickly visualize the path-finding. Try the Instant Path feature to get a quick path.
         </p>
       </section>
     </article>
@@ -114,7 +114,8 @@ button {
   background-position: center right;
   background-repeat: no-repeat;
   border-radius: 2px;
-  box-shadow: 0px 1px 3px rgba(255, 255, 255, 0.1);
+  border: 1px gray;
+  box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.1);
   color: #666968;
   font-size: 15px;
 
@@ -168,10 +169,12 @@ article {
   padding: 20px;
 }
 .content {
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
   align-content: center;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 16px;
-  color: rgba(48, 46, 46, 0.979);
+  color: rgba(26, 25, 25, 0.979);
   margin: none;
 }
 .img {
@@ -186,4 +189,5 @@ article {
   justify-content: center;
   width: 800px;
 }
+
 </style>

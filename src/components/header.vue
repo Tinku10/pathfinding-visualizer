@@ -1,7 +1,7 @@
 <template>
 <div id="h">
   <div id="header">
-    <button>ABOUT</button>
+    <button v-on:click="">GITHUB</button>
     <span><h2 id="heading">PATHFINDING VISUALIZER</h2></span>
     <span id="sel"><slot name="select"></slot></span>
     
@@ -54,6 +54,9 @@ button{
   height: 40px;
   border-radius: 2em;
   cursor: pointer;
+  background: url('../../public/github (1).png');
+  background-position: 5px;
+  background-repeat: no-repeat;
   /* box-sizing: border-box; */
   border: 1px solid #4fc08d;
   text-align: center;
@@ -63,8 +66,9 @@ button{
   background-color: #fff;
   /* padding: 0.75em 2em; */
   /* display: inline-block; */
-  color: #fff;
-  background-color: #4fc08d;
+  color: #4fc08d;
+  font-size: 15px;
+  background-color: white;
   margin: none;
 
 }

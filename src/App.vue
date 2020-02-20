@@ -2,14 +2,14 @@
   <div>
     <div id="line"></div>
 
-    <head-box>
+    <head-box v-bind:alg="algorithm">
       <template v-slot:select>
         <select class="select" v-model="algorithm" >
           <option style="color: #4fc08d;" hidden>{{ algorithm }}</option>
           <option>Breadth First Search</option>
           <option>Depth First Search</option>
-          <option>Dijkstra's Algorithm</option>
-          <option>Bellman-Ford's Algorithm</option>
+          <option>Dijkstra Algorithm</option>
+          <option>Bellman-Ford Algorithm</option>
         </select>
         <br />
         <br />
@@ -119,6 +119,9 @@ export default {
       this.visitedNodes = null;
       this.i = -1;
     });
+    bus.$on("visited", data => {
+      this.visitedNodes = data;
+    })
     
 
     this.interval = setInterval(() => this.draw(), 15);
@@ -185,12 +188,17 @@ export default {
             //   }
             // }
           }
+        }else if(this.algorithm == "Bellman-Ford's Algorithm"){
+          while(this.path == null){
+            this.$refs.grid.bellmanFord();
+          }
         }
+        
         
       
     },
     draw() {
-    if (this.algorithm == "Breadth First Search") {
+    if (this.algorithm == "Breadth First Search" && this.b == 'viz') {
       if (this.path == null) {
         this.$refs.grid.BFSsearch(true);
       }
@@ -216,20 +224,19 @@ export default {
         }
       }
 
-    }else if(this.algorithm == "Bellman-Ford's Algorithm" && this.hold == true){
+    }else if(this.algorithm == "Bellman-Ford's Algorithm" && this.hold == true && this.b == 'viz'){
 
           this.$refs.grid.bellmanFord();
-          // if(receive != null){
-          //   this.visitedNodes = receive;
-          //   alert(this.visitedNodes.length);
-          //   this.i++;
-          // }
-          // if(this.visitedNodes != null){
-          //   if(this.i < this.visitedNodes.length){
-          //     document.getElementById(this.visitedNodes[this.i]).className = "visited";
-          //     this.i++;
-          //   }
-          // }
+          if(this.b == 'viz'){
+            if(this.visitedNodes != null){
+              for(let i = 0; i < 10; i++){
+                document.getElementById(this.visitedNodes[this.i+1]).className = "visited";
+                this.i++;
+              }
+              }
+
+          }
+          
 
         
       

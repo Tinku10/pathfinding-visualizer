@@ -343,7 +343,6 @@ export default {
     },
     bellmanFord(){
       if(this.i == -1){
-        alert(this.edges.length);
         this.nodes[this.si][this.sj].distance = 0;
         this.i++;
       }
@@ -353,11 +352,13 @@ export default {
           if(this.i == 0){
             if(document.getElementById(this.edges[j].nodef.name).className != "sd"){
               // this.visitedNodes = this.visitedNodes.concat(this.edges[j].nodef.name);
-              document.getElementById(this.edges[j].nodef.name).className = "visited";
+              this.visitedNodes = this.visitedNodes.concat([this.edges[j].nodef.name]);
+              // document.getElementById(this.edges[j].nodef.name).className = "visited";
             }
             if(document.getElementById(this.edges[j].nodet.name).className != "sd"){
+              this.visitedNodes = this.visitedNodes.concat([this.edges[j].nodet.name]);
               // this.visitedNodes = this.visitedNodes.concat(this.edges[j].nodet.name);
-              document.getElementById(this.edges[j].nodet.name).className = "visited";
+              // document.getElementById(this.edges[j].nodet.name).className = "visited";
 
             }
           }
@@ -370,10 +371,14 @@ export default {
               
           }
     }
+    if(this.i == 0){
+      bus.$emit("visited", this.visitedNodes);
+    }
     
     }else{
       bus.$emit("stop", {p: this.path[this.di][this.dj], d: this.nodes[this.di][this.dj].distance});
     }
+    
     this.i++;
     }
     }

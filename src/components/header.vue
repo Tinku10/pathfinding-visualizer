@@ -36,12 +36,23 @@
         </p>
       </section>
     </article>
+    <p id="note" v-if="alg == 'Bellman-Ford Algorithm'">This algorithm is slow, but more versatile</p>
+    <p id="note" v-if="alg == 'Breadth First Search'">This algorithm is very fast, but can only be applied to unweighted graph</p>
+    <p id="note" v-if="alg == 'Depth First Search'">This algorithm is slower, only good if the graph is mostly occupied</p>
+
+
   </div>
 </template>
 
 <script>
 export default {
-  components: {}
+  components: {},
+  props:{
+    alg: {
+      type: String,
+      required: true
+    }
+  }
 };
 </script>
 
@@ -141,6 +152,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-left: 60px;
   margin-right: 60px;
 }
@@ -188,6 +200,16 @@ article {
   flex-direction: row;
   justify-content: center;
   width: 800px;
+}
+#note{
+  background-color: rgb(235, 229, 229);
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 20px;
+  align-content: center;
+  padding: 5px;
+  border-radius: 0.5em;
 }
 
 </style>

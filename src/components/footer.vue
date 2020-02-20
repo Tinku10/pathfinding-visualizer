@@ -1,7 +1,7 @@
 <template>
   <div id="foot">
     <a href="https://github.com/Tinku10" target=_blank style="text-decoration: none; color: inherit;"><div id="logo"></div></a>
-    <div>&#60; &#62; with ❤️ by tinku</div>
+    <div>❮ ❯  with ❤ by tinku</div>
   </div>
 </template>
 

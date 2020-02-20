@@ -158,7 +158,7 @@ export default {
           }
           this.count++;
         }
-      }else if(this.algorithm == "Bellman-Ford's Algorithm"  && this.path != null){
+      }else if(this.algorithm == "Bellman-Ford Algorithm"  && this.path != null){
         this.dist = this.path.length-1;
         if (this.count < this.path.length) {
           if (
@@ -188,7 +188,7 @@ export default {
             //   }
             // }
           }
-        }else if(this.algorithm == "Bellman-Ford's Algorithm"){
+        }else if(this.algorithm == "Bellman-Ford Algorithm"){
           while(this.path == null){
             this.$refs.grid.bellmanFord();
           }
@@ -224,7 +224,7 @@ export default {
         }
       }
 
-    }else if(this.algorithm == "Bellman-Ford's Algorithm" && this.hold == true && this.b == 'viz'){
+    }else if(this.algorithm == "Bellman-Ford Algorithm" && this.hold == true && this.b == 'viz'){
 
           this.$refs.grid.bellmanFord();
           if(this.b == 'viz'){

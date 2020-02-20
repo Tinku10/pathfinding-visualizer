@@ -102,7 +102,7 @@ export default {
       for (let i = 0; i <= 21; i++) {
         for (let j = 0; j <= 37; j++) {
           let node = this.nodes[i][j];
-          if(this.alg == "Bellman-Ford's Algorithm"){
+          if(this.alg == "Bellman-Ford Algorithm"){
             node.distance = Infinity;
           }
           // if (node.hasWall == false) {
@@ -110,7 +110,7 @@ export default {
             if (this.nodes[i - 1][j].hasWall == false) {
               node.edges[0] = this.nodes[i - 1][j];
               if(node.hasWall == false){
-                if(this.alg == "Bellman-Ford's Algorithm"){
+                if(this.alg == "Bellman-Ford Algorithm"){
                   this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i - 1][j]});
   
                 }
@@ -122,7 +122,7 @@ export default {
             if (this.nodes[i + 1][j].hasWall == false) {
               node.edges[1] = this.nodes[i + 1][j];
               if(node.hasWall == false){
-                if(this.alg == "Bellman-Ford's Algorithm"){
+                if(this.alg == "Bellman-Ford Algorithm"){
                   this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i + 1][j]});
   
                 }
@@ -134,7 +134,7 @@ export default {
             if (this.nodes[i][j - 1].hasWall == false) {
               node.edges[2] = this.nodes[i][j - 1];
               if(node.hasWall == false){
-                if(this.alg == "Bellman-Ford's Algorithm"){
+                if(this.alg == "Bellman-Ford Algorithm"){
                   this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i][j - 1]});
   
                 }
@@ -146,7 +146,7 @@ export default {
             if (this.nodes[i][j + 1].hasWall == false) {
               node.edges[3] = this.nodes[i][j + 1];
               if(node.hasWall == false){
-                if(this.alg == "Bellman-Ford's Algorithm"){
+                if(this.alg == "Bellman-Ford Algorithm"){
                   this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i][j + 1]});
   
                 }

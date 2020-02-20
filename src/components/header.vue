@@ -3,7 +3,7 @@
     <div id="header">
       <a
         style="text-decoration: none; color: inherit;"
-        href="https://github.com/Tinku10/pathfinding-visualizer/"
+        href="https://github.com/Tinku10/pathfinding-visualizer/tree/alt-design"
         target="_blank"
         ><button><b>GITHUB</b></button></a
       >
@@ -39,6 +39,8 @@
     <p id="note" v-if="alg == 'Bellman-Ford Algorithm'">This algorithm is slow, but more versatile</p>
     <p id="note" v-if="alg == 'Breadth First Search'">This algorithm is very fast, but can only be applied to unweighted graph</p>
     <p id="note" v-if="alg == 'Depth First Search'">This algorithm is slower, only good if the graph is mostly occupied</p>
+    <p id="note" v-if="alg == 'SELECT AN ALGORITHM'">This graph is unweighted and travelling can be done only in UP🠝 DOWN🠟 LEFT🠜 RIGHT🠞</p>
+
 
 
   </div>

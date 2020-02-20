@@ -36,9 +36,22 @@
         </p>
       </section>
     </article>
-    <p id="note" v-if="alg == 'Bellman-Ford Algorithm'">This algorithm is slow, but more versatile</p>
-    <p id="note" v-if="alg == 'Breadth First Search'">This algorithm is very fast, but can only be applied to unweighted graph</p>
-    <p id="note" v-if="alg == 'Depth First Search'">This algorithm is slower, only good if the graph is mostly occupied</p>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+      <a id="wiki" v-if="alg == 'Bellman-Ford Algorithm'" href="https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm" target=_blank><img src="../../public/wikipedia.png" ></a> 
+      <p id="note" v-if="alg == 'Bellman-Ford Algorithm'">This algorithm is slow, but more versatile</p>
+
+    </div>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+      <a id="wiki" v-if="alg == 'Breadth First Search'" href="https://en.wikipedia.org/wiki/Breadth-first_search" target=_blank><img src="../../public/wikipedia.png" ></a> 
+      <p id="note" v-if="alg == 'Breadth First Search'">This algorithm is very fast, but can only be applied to unweighted graph</p>
+
+    </div>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+      <a id="wiki" v-if="alg == 'Depth First Search'" href="https://en.wikipedia.org/wiki/Depth-first_search" target=_blank><img src="../../public/wikipedia.png" ></a> 
+      <p id="note" v-if="alg == 'Depth First Search'">This algorithm is slower, only good if the graph is mostly occupied</p>
+
+    </div>
+
     <p id="note" v-if="alg == 'SELECT AN ALGORITHM'">This graph is unweighted and travelling can be done only in UP🠝 DOWN🠟 LEFT🠜 RIGHT🠞</p>
 
 
@@ -108,7 +121,6 @@ button {
   margin-right: -10px; */
 }
 .select {
-  
   -webkit-appearance: button;
   -moz-appearance: button;
   -webkit-user-select: none;
@@ -145,11 +157,7 @@ button {
   border-radius: 2em;
   outline: none;
 }
-#sel{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
+
 #h {
   display: flex;
   flex-direction: column;
@@ -204,14 +212,22 @@ article {
   width: 800px;
 }
 #note{
-  background-color: rgb(235, 229, 229);
-  font-family: "Source Sans Pro", sans-serif;
+  background-color: #ecebeb;
+  font-family: Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
   font-weight: lighter;
   font-style: italic;
   font-size: 20px;
   align-content: center;
   padding: 5px;
   border-radius: 0.5em;
+}
+#wiki img{
+  padding: 5px; 
+  box-shadow: 0 0 6px rgb(163, 162, 162);
+  border-radius: 100%; 
+  /* background: lightgray; */
+  margin-right: 4px;
+  margin-top: 3px;
 }
 
 </style>

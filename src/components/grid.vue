@@ -80,7 +80,10 @@ export default {
     putWall(id) {
       if (this.hold === true && this.draw == true) {
         let l = document.getElementById(id);
-        l.setAttribute("class", "wall");
+        if(l.className != "sd"){
+          l.setAttribute("class", "wall");
+
+        }
         
           // l.onmouseover = function convert(){
           //   if(l.className == "wall"){
@@ -102,9 +105,7 @@ export default {
       for (let i = 0; i <= 21; i++) {
         for (let j = 0; j <= 37; j++) {
           let node = this.nodes[i][j];
-          if(this.alg == "Bellman-Ford Algorithm"){
-            node.distance = Infinity;
-          }
+          
           // if (node.hasWall == false) {
           if (i - 1 >= 0) {
             if (this.nodes[i - 1][j].hasWall == false) {
@@ -166,6 +167,7 @@ export default {
       this.q = new Queue();
       this.visitedNodes = [];
       this.i = 0;
+      this.edges = [];
       // this.instant_result = false;
       bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -194,6 +196,7 @@ export default {
       this.q = new Queue();
       this.visitedNodes = [];
       this.i = 0;
+      this.edges = [];
       // this.instant_result = false;
       // bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -220,19 +223,25 @@ export default {
       for (let i = 0; i <= 21; i++) {
         for (let j = 0; j <= 37; j++) {
           let id = document.getElementById(String(i) + String("-") + String(j)).id;
-          this.nodes[i][j] = {
-            name: id,
-            pi: i,
-            pj: j,
-            edges: [null, null, null, null],
-            distance: 0,
-            hasWall: false,
-            visited: false
-          };
+          if(id.className != "wall"){
+            this.nodes[i][j] = {
+              name: id,
+              pi: i,
+              pj: j,
+              edges: [null, null, null, null],
+              distance: 0,
+              hasWall: false,
+              visited: false
+            };
+
+          }
           if (document.getElementById(id).className == "wall") {
             this.nodes[i][j].hasWall = true;
           }
-          
+          if(this.alg == "Bellman-Ford Algorithm"){
+            this.nodes[i][j].distance = Infinity;
+          }
+      
           
           // console.log(String(i)+String(j));
         }

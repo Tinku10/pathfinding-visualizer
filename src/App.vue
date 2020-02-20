@@ -394,13 +394,14 @@ p {
   background: rgba(165, 160, 160, 0.637);
 }
 #line {
-  background: linear-gradient(90deg,grey,#8ed6fb 50%,green);
+  background: linear-gradient(90deg,rgb(112, 218, 245),#defb8e 50%,rgb(52, 228, 52));
   /* height: 0.5em; */
   padding: 1px;
   margin-left: -10px;
   margin-right: -10px;
-  text-align: center;
-  color: #fff;
-  font-size: 1.5rem;
+  margin-top: none;
+  /* text-align: center; */
+  /* color: #fff; */
+  /* font-size: 1.5rem; */
 }
 </style>

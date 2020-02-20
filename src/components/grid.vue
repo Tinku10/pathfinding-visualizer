@@ -28,11 +28,12 @@ import {bus} from '../main'
 export default {
   components: {},
   // props: ['row', 'column', 'si', 'sj', 'di', 'dj'],
-  // props: {
-  //   instant_result: {
-  //     type: Boolean,
-  //     required: true 
-  //   }
+  props: {
+    alg: {
+      type: String,
+      required: true
+    }
+  },
   // },
   // },
   data: function() {
@@ -41,8 +42,8 @@ export default {
       column: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37],
         
       hold: false,
-      nodes: new Array(22).fill(null).map(() => new Array(39).fill(null)),
-      path: new Array(22).fill(null).map(() => new Array(39).fill(null)),
+      nodes: new Array(22).fill(null).map(() => new Array(38).fill(null)),
+      path: new Array(22).fill(null).map(() => new Array(38).fill(null)),
       si: 11,
       sj: 8,
       di: 11,
@@ -51,9 +52,10 @@ export default {
       pathArr: null,
       distance: 0,
       draw: true,
-      dfsVisited: [],
+      visitedNodes: [],
       q: new Queue(),
-      edges: []
+      edges: [],
+      i: -1,
       // destination: document.getElementById('9'+'-'+'25').setAttribute("class", "destination")
     };
   },
@@ -68,45 +70,9 @@ export default {
     );
     s.className = "sd";
     d.className = "sd";
-    
-    // s.onmousedown = function drag(){
-    //   s.className = "unvisited";
-    //   for (let i = 0; i <= 21; i++) {
-    //     for (let j = 0; j <= 37; j++) {
-    //       let id = document.getElementById(String(i) + String("-") + String(j));
-    //       id.onmouseup = function drop(){
-    //         id.className = "sd";
-    //         var ar = id.id.split("-");
-    //         this.si = parseInt(ar[0]);
-    //         this.sj = parseInt(ar[1]);
-    //         this.sId = ar.toString();
-            
-    //       };
-    //     }
-    //   }
-    // }
    
-  
-    // d.onmousedown = function drag(){
-    //   d.className = "unvisited";
-    //   for (let i = 0; i <= 21; i++) {
-    //     for (let j = 0; j <= 37; j++) {
-    //       let id = document.getElementById(String(i) + String("-") + String(j));
-    //       id.onmouseup = function drop(){
-    //         id.className = "sd";
-    //         var ar = id.id.split("-");
-    //         this.di = parseInt(ar[0]);
-    //         this.dj = parseInt(ar[1]);
-    //       };
-    //     }
-    //   }
-
-    // };
-    // console.log(this.si);
-    // console.log(this.sj);
-    // this.update(this.si, this.sj, this.di, this.dj);
-
   },
+  
   
   
   methods: {
@@ -136,43 +102,70 @@ export default {
       for (let i = 0; i <= 21; i++) {
         for (let j = 0; j <= 37; j++) {
           let node = this.nodes[i][j];
-
+          if(this.alg == "Bellman-Ford's Algorithm"){
+            node.distance = Infinity;
+          }
           // if (node.hasWall == false) {
           if (i - 1 >= 0) {
             if (this.nodes[i - 1][j].hasWall == false) {
               node.edges[0] = this.nodes[i - 1][j];
-              this.edges.concat({nodef: node, nodet: node.edges[0]});
+              if(node.hasWall == false){
+                if(this.alg == "Bellman-Ford's Algorithm"){
+                  this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i - 1][j]});
+  
+                }
+
+              }
             }
           }
           if (i + 1 <= 21) {
             if (this.nodes[i + 1][j].hasWall == false) {
               node.edges[1] = this.nodes[i + 1][j];
-              this.edges.concat({nodef: node, nodet: node.edges[1]});
+              if(node.hasWall == false){
+                if(this.alg == "Bellman-Ford's Algorithm"){
+                  this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i + 1][j]});
+  
+                }
+
+              }
             }
           }
           if (j - 1 >= 0) {
             if (this.nodes[i][j - 1].hasWall == false) {
               node.edges[2] = this.nodes[i][j - 1];
-              this.edges.concat({nodef: node, nodet: node.edges[2]});
+              if(node.hasWall == false){
+                if(this.alg == "Bellman-Ford's Algorithm"){
+                  this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i][j - 1]});
+  
+                }
+
+              }
             }
           }
           if (j + 1 <= 37) {
             if (this.nodes[i][j + 1].hasWall == false) {
               node.edges[3] = this.nodes[i][j + 1];
-              this.edges.concat({nodef: node, nodet: node.edges[3]});
+              if(node.hasWall == false){
+                if(this.alg == "Bellman-Ford's Algorithm"){
+                  this.edges = this.edges.concat({'nodef': this.nodes[i][j], 'nodet': this.nodes[i][j + 1]});
+  
+                }
+
+              }
             }
           }
-          // console.log(node.edges);
           // alert(String(i)+String(j));
         }
       }
       // }
+
       // console.log(this.nodes);
     },
     clearCanvas(){
       bus.$emit("stop", {p: null, d: "∞"});
       this.q = new Queue();
-      this.dfsVisited = [];
+      this.visitedNodes = [];
+      this.i = 0;
       // this.instant_result = false;
       bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -199,7 +192,8 @@ export default {
     clearPath(){
       bus.$emit("stop", {p: null, d: "∞"});
       this.q = new Queue();
-      this.dfsVisited = [];
+      this.visitedNodes = [];
+      this.i = 0;
       // this.instant_result = false;
       // bus.$emit("inst", false);
       for (let i = 0; i <= 21; i++) {
@@ -310,10 +304,10 @@ export default {
             if(document.getElementById(this.nodes[xi][xj].name).className == "sd"){
               document.getElementById(this.nodes[xi][xj].name).className = "sd";
             }else{
-              this.dfsVisited = this.dfsVisited.concat(this.nodes[xi][xj].name);
+              this.visitedNodes = this.visitedNodes.concat(this.nodes[xi][xj].name);
               // document.getElementById(this.nodes[xi][xj].name).className = "visited";
             
-          }
+            }
           if(this.checkEqual(this.nodes[xi][xj].edges, [null, null, null, null]) == false){
 
             for(let i = 0; i < 4; i++){
@@ -343,21 +337,45 @@ export default {
     DFS(){
       let p = this.DFShelper(this.si, this.sj, this.di, this.dj);
       if(p != null){
-        return [p, this.dfsVisited];
+        return [p, this.visitedNodes];
 
       }
     },
     bellmanFord(){
-      for(let i = 0; i < 22*38-1; i++){
+      if(this.i == -1){
+        alert(this.edges.length);
+        this.nodes[this.si][this.sj].distance = 0;
+        this.i++;
+      }
+      if(this.i >= 0){
+        if(this.i < 22*38 - 1){
         for(let j = 0; j < this.edges.length; j++){
+          if(this.i == 0){
+            if(document.getElementById(this.edges[j].nodef.name).className != "sd"){
+              // this.visitedNodes = this.visitedNodes.concat(this.edges[j].nodef.name);
+              document.getElementById(this.edges[j].nodef.name).className = "visited";
+            }
+            if(document.getElementById(this.edges[j].nodet.name).className != "sd"){
+              // this.visitedNodes = this.visitedNodes.concat(this.edges[j].nodet.name);
+              document.getElementById(this.edges[j].nodet.name).className = "visited";
+
+            }
+          }
+          
           if(this.edges[j].nodef.distance + 1 < this.edges[j].nodet.distance){
             this.edges[j].nodet.distance = this.edges[j].nodef.distance + 1;
+            
+                this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj] = [this.edges[j].nodet];
+                this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj] = this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj].concat(this.path[this.edges[j].nodef.pi][this.edges[j].nodef.pj]);
+              
           }
-          this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj] = [this.edges[j].nodet];
-          this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj] = this.path[this.edges[j].nodet.pi][this.edges[j].nodet.pj].concat(this.path[this.edges[j].nodef.pi][this.edges[j].nodef.pj]);
-        }
-      }
-      return this.path[this.di][this.dj];
+    }
+    
+    }else{
+      bus.$emit("stop", {p: this.path[this.di][this.dj], d: this.nodes[this.di][this.dj].distance});
+    }
+    this.i++;
+    }
     }
   }
 };

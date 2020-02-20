@@ -4,7 +4,7 @@
 
     <head-box>
       <template v-slot:select>
-        <select class="select" v-model="algorithm">
+        <select class="select" v-model="algorithm" >
           <option style="color: #4fc08d;" hidden>{{ algorithm }}</option>
           <option>Breadth First Search</option>
           <option>Depth First Search</option>
@@ -20,7 +20,7 @@
     <div id="temp">
       <!-- <span> -->
       <!-- <message-box v-if="noPath"></message-box> -->
-      <box-grid ref="grid"></box-grid>
+      <box-grid ref="grid" v-bind:alg="algorithm"></box-grid>
 
       <!-- </span> -->
       <!-- <span> -->
@@ -87,7 +87,7 @@ export default {
     "box-grid": grid,
     "content-box": content,
     "head-box": header,
-    foot: footer
+    "foot": footer
   },
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
       count: 200,
       algorithm: "SELECT AN ALGORITHM",
       noPath: true,
-      visitedDFS: null,
+      visitedNodes: null,
       i: -1,
       b: null
       // instantB: false
@@ -116,28 +116,22 @@ export default {
       this.count = 0;
       this.hold = false;
       this.noPath = true;
-      this.visitedDFS = null;
+      this.visitedNodes = null;
       this.i = -1;
     });
-    // bus.$on("inst", data => {
-    //   console.log("dsf");
-    //   console.log(data);
-    //   this.instantB = data;
-    // })
+    
 
     this.interval = setInterval(() => this.draw(), 15);
     this.interval = setInterval(() => this.drawPath(), 20);
   },
-  // updated(){
-  //     this.draw()
-  // },
+  
 
   methods: {
     drawPath() {
       if (
         this.algorithm == "Depth First Search" &&
         this.path != null &&
-        this.i == this.visitedDFS.length
+        this.i == this.visitedNodes.length
       ) {
         this.dist = this.path.length;
         if (this.count < this.path.length) {
@@ -152,6 +146,18 @@ export default {
         }
       } else if(this.algorithm == "Breadth First Search"){
         if (this.count < this.path.length - 1) {
+          if (
+            document.getElementById(this.path[this.count].name).className !=
+            "sd"
+          ) {
+            document.getElementById(this.path[this.count].name).className =
+              "path";
+          }
+          this.count++;
+        }
+      }else if(this.algorithm == "Bellman-Ford's Algorithm"  && this.path != null){
+        this.dist = this.path.length-1;
+        if (this.count < this.path.length) {
           if (
             document.getElementById(this.path[this.count].name).className !=
             "sd"
@@ -194,36 +200,42 @@ export default {
       if (this.i == -1) {
         a = this.$refs.grid.DFS();
         this.path = a[0];
-        this.visitedDFS = a[1];
+        this.visitedNodes = a[1];
         this.i++;
       } else {
         if(this.b == 'viz'){
-          if (this.i < this.visitedDFS.length) {
-            document.getElementById(this.visitedDFS[this.i]).className =
+          if (this.i < this.visitedNodes.length) {
+            document.getElementById(this.visitedNodes[this.i]).className =
               "visited";
             this.i++;
   
           }
 
         }else{
-          this.i = this.visitedDFS.length;
+          this.i = this.visitedNodes.length;
         }
       }
 
-        // i ++;
-        // if(i>800){
-        //   if(this.path != null){
-        //     this.noPath = false;
-        //     clearInterval(this.interval);
+    }else if(this.algorithm == "Bellman-Ford's Algorithm" && this.hold == true){
 
-        //   }
-        // }
-        // }
-      }
-      // }
+          this.$refs.grid.bellmanFord();
+          // if(receive != null){
+          //   this.visitedNodes = receive;
+          //   alert(this.visitedNodes.length);
+          //   this.i++;
+          // }
+          // if(this.visitedNodes != null){
+          //   if(this.i < this.visitedNodes.length){
+          //     document.getElementById(this.visitedNodes[this.i]).className = "visited";
+          //     this.i++;
+          //   }
+          // }
 
-      // i++;
+        
+      
+      
     }
+  }
   
           // i ++;
           // if(i>800){
